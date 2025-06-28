@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: workspace 
+    schema: default
+    loaded_at_field: _etl_loaded_at
+    freshness:
+      warn_after: {count: 6, period: hour}
+      error_after: {count: 12, period: hour}
+    tables:
+      - name: jaffle_shop_customers      
+        freshness: null
+        columns: 
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: jaffle_shop_orders
+        columns: 
+          - name: id
+            tests:
+              - unique
+              - not_null
+
+      
