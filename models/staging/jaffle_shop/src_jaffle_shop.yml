@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: jaffle_shop
+    description: a clone of a Postgres database
     database: workspace 
     schema: default
     loaded_at_field: _etl_loaded_at
@@ -10,13 +11,16 @@ sources:
       error_after: {count: 12, period: hour}
     tables:
       - name: jaffle_shop_customers      
+        description: raw customer data
         freshness: null
         columns: 
           - name: id
+            description: primary key for customer data
             tests:
               - unique
               - not_null
       - name: jaffle_shop_orders
+        description: raw order data
         columns: 
           - name: id
             tests:
